@@ -39,7 +39,8 @@ const REDIRECT_URI = "https://render-stx250531.onrender.com/callback";
 /*
  * The unique identifier of the API your web app wants to access. This is provided by StockX.
 */
-const AUTH0_AUDIENCE = "urn:gateway.stockx.com";
+//const AUTH0_AUDIENCE = "urn:gateway.stockx.com";
+const AUTH0_AUDIENCE = "gateway.stockx.com";
 
 const GRANT_TYPE = "authorization_code";
 const ACCESS_TOKEN_URL = `https://${AUTH0_DOMAIN}/oauth/token`;

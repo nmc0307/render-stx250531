@@ -115,5 +115,5 @@ router.get("/", (_, res) =>
 app.use("/", router);
 
 app.listen(port, () => {
-    console.log(`Listening to requests on http://localhost:${PORT}`);
+    console.log(`Listening to requests on http://localhost:${port}`);
 });

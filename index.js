@@ -108,6 +108,11 @@ router.get("/callback", async (req, res) => {
     }
 });
 
+router.get("/hello", (_, res) => {
+  res.send("hello").status(200);
+});
+
+
 router.get("/", (_, res) =>
     res.send("Sample homepage. To login, navigate your browser to localhost:8000/login.").status(200)
 );

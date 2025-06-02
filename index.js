@@ -21,6 +21,7 @@ require('dotenv').config();
 const AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID;
 const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN;
 const AUTH0_CLIENT_SECRET = process.env.AUTH0_CLIENT_SECRET;
+const OPAQUE_STATE_VALUE = process.env.OPAQUE_STATE_VALUE;
 
 /*
  * This callback URL is where you will be redirected to after you have
@@ -118,6 +119,26 @@ router.get("/", (_, res) =>
 );
 
 app.use("/", router);
+
+/* NMC
+const params = new URLSearchParams({
+  response_type: 'code',
+  client_id: AUTH0_CLIENT_ID,
+  redirect_uri: REDIRECT_URI,
+  scope: 'offline_access openid',
+  audience: 'gateway.stockx.com',
+  state: OPAQUE_STATE_VALUE
+});
+
+const url = `https://accounts.stockx.com/authorize?${params.toString()}`;
+window.location.href = url; // 브라우저가 해당 URL로 이동
+
+router.get("/auth1", (_, res) => {
+  res.redirect("https://accounts.stockx.com/authorize?...");
+});
+
+*/
+
 
 app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);

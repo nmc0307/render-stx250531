@@ -43,7 +43,7 @@ const AUTH0_AUDIENCE = "urn:gateway.stockx.com";
 const GRANT_TYPE = "authorization_code";
 const ACCESS_TOKEN_URL = `https://${AUTH0_DOMAIN}/oauth/token`;
 
-const PORT = 8000;
+const port = process.env.PORT || 4000 
 
 const Auth0Strategy = require("passport-auth0");
 const axios = require("axios");

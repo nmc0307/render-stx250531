@@ -7,7 +7,7 @@ node index.js OR npm start
 
 git add .
 git commit -m "Add newfile.txt"
-git push origin 브랜치명
+git push origin main   //main:브랜치명
 
 */
 
@@ -22,6 +22,9 @@ const AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID;
 const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN;
 const AUTH0_CLIENT_SECRET = process.env.AUTH0_CLIENT_SECRET;
 const OPAQUE_STATE_VALUE = process.env.OPAQUE_STATE_VALUE;
+const API_KEY = process.env.API_KEY
+const ACCESS_TOKEN_12H = process.env.ACCESS_TOKEN_12H
+
 
 /*
  * This callback URL is where you will be redirected to after you have
@@ -137,8 +140,9 @@ router.get("/stockx-search", async (req, res) => {
       {
         method: 'GET',
         headers: {
-          'x-api-key': 'YOUR_API_KEY_HERE',
-          Authorization: 'Bearer <YOUR_JWT_HERE>'
+          'x-api-key': API_KEY,
+          //Authorization: 'Bearer <YOUR_JWT_HERE>'
+          Authorization: 'Bearer ' + ACCESS_TOKEN_12H
         }
       }
     );

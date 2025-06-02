@@ -1,7 +1,7 @@
 "use strict";
 
 /* 
-npm install express express-session passport passport-auth0 axios dotenv
+npm install express express-session passport passport-auth0 axios dotenv node-fetch
 
 node index.js OR npm start
 

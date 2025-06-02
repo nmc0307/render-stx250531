@@ -119,26 +119,38 @@ router.get("/", (_, res) =>
     res.send("Sample homepage. To login, navigate your browser to localhost:8000/login.").status(200)
 );
 
+/////////////////////////////////////////////////////////////////
+//NMC, USAGE : /stockx-search?query=xxx&pageNumber=1&pageSize=10
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
+router.get("/stockx-search", async (req, res) => {
+  const { query, pageNumber, pageSize } = req.query;
+  const params = new URLSearchParams({
+    query: query || '',
+    pageNumber: pageNumber || '1',
+    pageSize: pageSize || '10'
+  }).toString();
+
+  try {
+    const resp = await fetch(
+      `https://api.stockx.com/v2/catalog/search?${params}`,
+      {
+        method: 'GET',
+        headers: {
+          'x-api-key': 'YOUR_API_KEY_HERE',
+          Authorization: 'Bearer <YOUR_JWT_HERE>'
+        }
+      }
+    );
+    const data = await resp.text();
+    res.send(data);
+  } catch (err) {
+    res.status(500).send(err.toString());
+  }
+});
+/////////////////////////////////////////////////////////////////
+
 app.use("/", router);
-
-/* NMC
-const params = new URLSearchParams({
-  response_type: 'code',
-  client_id: AUTH0_CLIENT_ID,
-  redirect_uri: REDIRECT_URI,
-  scope: 'offline_access openid',
-  audience: 'gateway.stockx.com',
-  state: OPAQUE_STATE_VALUE
-});
-
-const url = `https://accounts.stockx.com/authorize?${params.toString()}`;
-window.location.href = url; // 브라우저가 해당 URL로 이동
-
-router.get("/auth1", (_, res) => {
-  res.redirect("https://accounts.stockx.com/authorize?...");
-});
-
-*/
 
 
 app.listen(port, () => {

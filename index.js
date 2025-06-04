@@ -130,7 +130,7 @@ router.get("/", (_, res) =>
       `Backend Endpoint Menu.
 /hello : endpoint test, say 'hello'
 /login : Get ACCESS_TOKEN_12H, then Must Update Env Variable in Render.com Dashboard
-/stockx-search?query=xxx&pageNumber=1&pageSize=50 : StockX Catalog Query
+/stockx-search?query=xxx&pageNumber=1&pageSize=50 : StockX Catalog Query`
     )
 );
 

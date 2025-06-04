@@ -117,13 +117,26 @@ router.get("/hello", (_, res) => {
   res.send("hello").status(200);
 });
 
-
+/*
 router.get("/", (_, res) =>
     res.send("Sample homepage. To login, navigate your browser to localhost:8000/login.").status(200)
 );
+*/
+
+router.get("/", (_, res) =>
+  res
+    .status(200)
+    .send(
+      `Backend Endpoint Menu.
+/hello : endpoint test, say 'hello'
+/login : Get ACCESS_TOKEN_12H, then Must Update Env Variable in Render.com Dashboard
+/stockx-search?query=xxx&pageNumber=1&pageSize=50 : StockX Catalog Query
+    )
+);
+
 
 /////////////////////////////////////////////////////////////////
-//NMC, USAGE : /stockx-search?query=xxx&pageNumber=1&pageSize=10
+//NMC, USAGE : /stockx-search?query=xxx&pageNumber=1&pageSize=50
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 router.get("/stockx-search", async (req, res) => {
@@ -131,7 +144,7 @@ router.get("/stockx-search", async (req, res) => {
   const params = new URLSearchParams({
     query: query || '',
     pageNumber: pageNumber || '1',
-    pageSize: pageSize || '10'
+    pageSize: pageSize || '50'
   }).toString();
 
   try {
